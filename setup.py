@@ -29,7 +29,7 @@ setup(
     name="starlette-graphene",
     version=str(version.VERSION),
     license="Apache License, Version 2.0",
-    description="Helper for getting secrets from different storage",
+    description="Helper for add support for graphene in starlette",
     long_description=readme,
     long_description_content_type="text/markdown",
     author="Pavel Liashkov",
