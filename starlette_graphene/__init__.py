@@ -3,12 +3,18 @@ import typing as t
 from dataclasses import dataclass
 
 import graphene
-from graphql import ExecutionContext, GraphQLError, Middleware, format_error, graphql
+from graphql import ExecutionContext, GraphQLError, GraphQLFormattedError, Middleware, graphql
 from starlette import status
 from starlette import types as st
 from starlette.background import BackgroundTasks
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse, Response
+
+
+def format_error(error: GraphQLError) -> GraphQLFormattedError:
+    if not isinstance(error, GraphQLError):
+        raise TypeError("Expected a GraphQLError.")
+    return error.formatted
 
 
 @dataclass
@@ -18,7 +24,7 @@ class GraphQLApp:
     context_value: t.Optional[t.Any] = None
     root_value: t.Optional[t.Any] = None
     middleware: t.Optional[Middleware] = None
-    error_formatter: t.Callable[[GraphQLError], t.Dict[str, t.Any]] = format_error
+    error_formatter: t.Callable[[GraphQLError], GraphQLFormattedError] = format_error
     execution_context_class: t.Optional[t.Type[ExecutionContext]] = None
 
     async def __call__(self, scope: st.Scope, receive: st.Receive, send: st.Send) -> None:

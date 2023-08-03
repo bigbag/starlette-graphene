@@ -7,4 +7,5 @@ pytest-sugar
 pytest-xdist
 requests
 requests-mock
+httpx
 mock

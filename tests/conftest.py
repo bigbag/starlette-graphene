@@ -26,7 +26,6 @@ class Query(grt.ObjectType):
         info,
         filters: AccountFilter,
     ):
-
         return [Account(account=1212), Account(account=43434)]
 
 
