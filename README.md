@@ -10,6 +10,7 @@
 
 **starlette-graphene** is a helper for add support for graphene in starlette.
 
+* [Project Changelog](https://github.com/bigbag/starlette-graphene/blob/main/CHANGELOG.md)
 
 ## Installation
 
